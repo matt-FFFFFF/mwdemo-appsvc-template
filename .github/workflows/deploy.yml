@@ -8,9 +8,7 @@ on:
 permissions:
       id-token: write
       contents: read
-
 env:
-  AZURE_WEBAPP_NAME: brk606      # set this to your application's name
   AZURE_WEBAPP_PACKAGE_PATH: '.' # set this to the path to your web app project, defaults to the repository root
   DOTNET_VERSION: '8.0.x'        # set this to the dot net version to use
 
@@ -45,7 +43,7 @@ jobs:
       - name: 'Run Azure webapp deploy action using publish profile credentials'
         uses: azure/webapps-deploy@de617f46172a906d0617bb0e50d81e9e3aec24c8 # v3.0.1
         with:
-          app-name: ${{ env.AZURE_WEBAPP_NAME }} # Replace with your app name
+          app-name: ${{ vars.APP_SVC_NAME }} # Replace with your app name
           package: '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}/myapp'
 
       - name: logout
